@@ -20,11 +20,12 @@ import { EmailVerificationComponent } from './pages/email-verification/email-ver
 import { ProfileComponent } from './tools/profile/profile.component';
 import { PostFeedComponent } from './pages/post-feed/post-feed.component';
 import { CreatePostComponent } from './tools/create-post/create-post.component';
+import { PostComponent } from './tools/post/post.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AuthenticatorComponent, EmailVerificationComponent, ProfileComponent, PostFeedComponent, CreatePostComponent],
+  declarations: [AppComponent, HomeComponent, AuthenticatorComponent, EmailVerificationComponent, ProfileComponent, PostFeedComponent, CreatePostComponent, PostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
