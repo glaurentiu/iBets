@@ -21,7 +21,7 @@ export class AppComponent {
     this.auth.listenToSignInStateChanges((user) => {
       this.auth.checkSignInState({
         whenSignedIn: (user) => {
-          console.log(`hi ${user.email}`);
+      
 
         },
         whenSignedOut: (user) => {},
@@ -55,6 +55,9 @@ export class AppComponent {
       onUpdate: (result) => {
         this.userDocument = <UserDocument>result.data();
         this.userHasProfile = result.exists;
+        if(this.userHasProfile){
+          this.router.navigate(['postfeed']);
+        }
       }
     });
   }
