@@ -5,16 +5,20 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
-    path: '', component: HomeComponent
+    path: '',
+    component: HomeComponent,
   },
   {
-    path:'email-verification', component: EmailVerificationComponent
+    path: 'email',
+    component: EmailVerificationComponent,
   },
-
+  {
+    path: '**', component: HomeComponent,
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

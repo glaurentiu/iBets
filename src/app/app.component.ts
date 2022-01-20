@@ -17,11 +17,11 @@ export class AppComponent {
       this.auth.checkSignInState({
         whenSignedIn: (user) => {
           console.log(`hi ${user.email}`);
+
         },
         whenSignedOut: (user) => {},
         whenSignedInAndEmailNotVerified: (user) => {
-          console.log(`user ${user.email} has the email not verified`);
-          this.router.navigate(['email-verification']);
+          this.router.navigate(['email']);
         },
         whenSignedInAndEmailVerified: (user) => {
           console.log('Email verified successfully')
