@@ -4,22 +4,26 @@
       <mat-card-title>{{getStateText()}}</mat-card-title>
     </mat-card-header>
     <div *ngIf="isLoginState()">
-      <input type="text" placeholder="Email">
-      <input type="password" placeholder="Password">
-      <button mat-flat-button color="warn">Login</button>
+      <input #loginEmail type="text" placeholder="Email">
+      <input #loginPassword type="password" placeholder="Password">
+      <button (click)="onLoginClick(loginEmail,loginPassword)" mat-flat-button color="warn">Login</button>
     </div>
     <div *ngIf="isRegisterState()">
-      <input type="text" placeholder="Email">
-      <input type="password" placeholder="Password">
-      <input type="password" placeholder="Confirm Password">
-      <button mat-flat-button color="warn">Register</button>
+      <input #registerEmail type="text" placeholder="Email">
+      <input #registerPassword type="password" placeholder="Password">
+      <input #registerConfirmPassword type="password" placeholder="Confirm Password">
+      <button (click)="onRegisterClick(
+        registerEmail,
+        registerPassword,
+        registerConfirmPassword
+      )" mat-flat-button color="warn">Register</button>
     </div>
     <div *ngIf="isForgotPasswordState()">
-      <input type="text" placeholder="Email">
-      <button mat-flat-button color="warn">Reset</button>
+      <input #resetEmail type="text" placeholder="Email">
+      <button (click)="onResetClick(resetEmail)" mat-flat-button color="warn">Reset</button>
     </div>
     <mat-card-actions align="end">
-      <button mat-flat-button color=""(click)="onForgot()">Forgot Password</button>
+      <button mat-flat-button color="" (click)="onForgot()">Forgot Password</button>
       <button mat-flat-button color="" (click)="onCreate()">Create an Account</button>
       <button mat-flat-button color="" (click)="onLogin()">Login</button>
 
