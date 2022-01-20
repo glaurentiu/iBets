@@ -3,8 +3,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { Router } from '@angular/router';
-import {FirebaseTSFirestore} from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
-
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 @Component({
   selector: 'app-root',
@@ -15,16 +14,15 @@ export class AppComponent {
   auth = new FirebaseTSAuth();
   firestore = new FirebaseTSFirestore();
   userHasProfile = true;
-  userDocument?: UserDocument;
+  private static userDocument?: UserDocument;
 
   constructor(private loginSheet: MatBottomSheet, private router: Router) {
     this.auth.listenToSignInStateChanges((user) => {
       this.auth.checkSignInState({
-        whenSignedIn: (user) => {
-      
-
+        whenSignedIn: (user) => {},
+        whenSignedOut: (user) => {
+          AppComponent.userDocument = undefined;
         },
-        whenSignedOut: (user) => {},
         whenSignedInAndEmailNotVerified: (user) => {
           this.router.navigate(['email']);
         },
@@ -48,24 +46,37 @@ export class AppComponent {
     this.auth.signOut();
   }
 
-  getUserProfile(){
+  public static getUserDocument() {
+    return AppComponent.userDocument;
+  }
+
+  getUsername() {
+    try {
+      return AppComponent.userDocument?.name;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  getUserProfile() {
     this.firestore.listenToDocument({
-      name: "Getting ocument",
-      path: ["Users",this.auth.getAuth().currentUser?.uid as string],
+      name: 'Getting ocument',
+      path: ['Users', this.auth.getAuth().currentUser?.uid as string],
       onUpdate: (result) => {
-        this.userDocument = <UserDocument>result.data();
+        AppComponent.userDocument = <UserDocument>result.data();
         this.userHasProfile = result.exists;
-        if(this.userHasProfile){
+        AppComponent.userDocument.userId = this.auth.getAuth().currentUser
+          ?.uid as string;
+        if (this.userHasProfile) {
           this.router.navigate(['postfeed']);
         }
-      }
+      },
     });
   }
 }
 
-
 export interface UserDocument {
   name: string;
   betting: string;
-
+  userId: string;
 }

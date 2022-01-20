@@ -5,7 +5,7 @@
     </div>
     <div id="nav-bar-right">
       <div *ngIf="!loggedIn()" class="nav-bar-items" (click)="onLoginClick()">Login</div>
-      <div *ngIf="loggedIn() && userHasProfile" class="nav-bar-items">Hello, {{userDocument?.name}}</div>
+      <div *ngIf="loggedIn() && userHasProfile" class="nav-bar-items">Hello, {{getUsername()}}</div>
       <div *ngIf="loggedIn()" class="nav-bar-items" (click)="onLogoutClick()">LogOut</div>
     </div>
   </div>
