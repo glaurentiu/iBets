@@ -15,6 +15,7 @@ export class PostComponent implements OnInit {
   firestore = new FirebaseTSFirestore();
   creatorName?: string;
   creatorDescription?: string;
+  creatorAvatar?: string;
 
   constructor(private dialog: MatDialog) {}
 
@@ -29,6 +30,7 @@ export class PostComponent implements OnInit {
         let userDocument = <UserDocument>result.data();
         this.creatorName = userDocument.name;
         this.creatorDescription = userDocument.betting;
+        this.creatorAvatar = userDocument.avatar;
       },
     });
   }

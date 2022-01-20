@@ -39,3 +39,12 @@ input, textarea {
   box-sizing: border-box;
 
 }
+
+img {
+  cursor: pointer;
+}
+
+#photo-upload {
+  display:none;
+}
+

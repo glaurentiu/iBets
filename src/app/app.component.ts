@@ -79,4 +79,5 @@ export interface UserDocument {
   name: string;
   betting: string;
   userId: string;
+  avatar: string;
 }

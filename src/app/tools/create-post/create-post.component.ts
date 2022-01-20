@@ -27,7 +27,9 @@ export class CreatePostComponent implements OnInit {
     }else {
       this.uploadPost(comment);
     }
+
   }
+
 
   uploadImagePost(comment: string) {
     let postId = this.firestore.genDocId();
@@ -77,7 +79,7 @@ export class CreatePostComponent implements OnInit {
         if (fileReader.result != null) {
           let readableString = fileReader.result.toString();
           let postPreviewImage = <HTMLImageElement>(
-            document.getElementById('post-preview-image')
+            document.getElementById('post-preview-image1')
           );
           postPreviewImage.src = readableString;
         }

@@ -1,6 +1,10 @@
 <div id="profile" [ngClass]="{'active':show, 'idle':!show}">
   <div id="profile-content">
-   
+    <label for="photo-upload">
+      <input  #photoSelector (change)="onPhotoSelected(photoSelector)"
+      id="photo-upload" type="file" accept="image/*"/>
+      <img id="post-preview-image" src="../../../assets/avatar.png" width="150px" height="150px">
+    </label>
     <input #nameInput type="text" placeholder="Name">
     <textarea #bettingSports placeholder="What sports are you betting on?"></textarea>
     <button (click)="onContinueClick(nameInput,bettingSports)" mat-flat-button color="warn">Continue</button>
