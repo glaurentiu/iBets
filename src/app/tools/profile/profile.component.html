@@ -1,5 +1,6 @@
 <div id="profile" [ngClass]="{'active':show, 'idle':!show}">
   <div id="profile-content">
+   
     <input #nameInput type="text" placeholder="Name">
     <textarea #bettingSports placeholder="What sports are you betting on?"></textarea>
     <button (click)="onContinueClick(nameInput,bettingSports)" mat-flat-button color="warn">Continue</button>

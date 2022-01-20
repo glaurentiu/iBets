@@ -29,8 +29,18 @@
 }
 
 .nav-bar-items {
-  font-size:1em;
+  font-size:.8em;
   display:inline-block;
   cursor:pointer;
   margin-right: 1em;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }

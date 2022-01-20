@@ -1,15 +1,21 @@
-<div id="nav-bar">
-  <div id="nav-bar-content">
-    <div id="nav-bar-left">
-      <div style="font-size:1.5em;" class="nav-bar-items">iBets</div>
+<div class="app-toolbar">
+
+  <mat-toolbar>
+    <span>iBets</span>
+    <span class="example-spacer"></span>
+    <div class="nav-bar-items">
+
+      <button mat-flat-button color="warn" *ngIf="!loggedIn()" class="nav-bar-items"
+        (click)="onLoginClick()">Login</button>
+      <span *ngIf="loggedIn() && userHasProfile" class="nav-bar-items">Hi {{getUsername()}} !</span>
+
+      <button mat-flat-button color="warn" *ngIf="loggedIn()" class="nav-bar-items" (click)="onLogoutClick()">Sign
+        Out</button>
+
     </div>
-    <div id="nav-bar-right">
-      <div *ngIf="!loggedIn()" class="nav-bar-items" (click)="onLoginClick()">Login</div>
-      <div *ngIf="loggedIn() && userHasProfile" class="nav-bar-items">Hello, {{getUsername()}}</div>
-      <div *ngIf="loggedIn()" class="nav-bar-items" (click)="onLogoutClick()">LogOut</div>
-    </div>
-  </div>
+  </mat-toolbar>
 </div>
+
 <router-outlet></router-outlet>
 
 <app-profile [show]="loggedIn() && !userHasProfile"></app-profile>
