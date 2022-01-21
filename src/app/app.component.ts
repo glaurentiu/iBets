@@ -14,14 +14,15 @@ export class AppComponent {
   auth = new FirebaseTSAuth();
   firestore = new FirebaseTSFirestore();
   userHasProfile = true;
-  private static userDocument?: UserDocument;
+  private static userDocument: UserDocument | null;
 
   constructor(private loginSheet: MatBottomSheet, private router: Router) {
     this.auth.listenToSignInStateChanges((user) => {
       this.auth.checkSignInState({
         whenSignedIn: (user) => {},
         whenSignedOut: (user) => {
-          AppComponent.userDocument = undefined;
+          AppComponent.userDocument = null;
+          this.router.navigate(['']);
         },
         whenSignedInAndEmailNotVerified: (user) => {
           this.router.navigate(['email']);
@@ -44,6 +45,7 @@ export class AppComponent {
 
   onLogoutClick() {
     this.auth.signOut();
+    window.location.reload();
   }
 
   public static getUserDocument() {
