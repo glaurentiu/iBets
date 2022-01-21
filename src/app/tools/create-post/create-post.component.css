@@ -1,8 +1,8 @@
-#photo-upload {
+#photo-post-upload {
   display:none;
 }
 
-textarea{
+textarea {
   font-size: 1.5em;
   padding:1em;
   resize:none;
@@ -17,7 +17,7 @@ textarea{
   margin-top: 1em;
 }
 
-#post-preview-image{
+#post-preview-image1{
   object-fit: cover;
   object-position: center;
   width:150px;

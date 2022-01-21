@@ -10,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./create-post.component.css'],
 })
 export class CreatePostComponent implements OnInit {
-  selectedImageFile: any;
+  selectedImageFile?: File;
   auth = new FirebaseTSAuth();
   firestore = new FirebaseTSFirestore();
   storage = new FirebaseTSStorage();
@@ -21,20 +21,19 @@ export class CreatePostComponent implements OnInit {
 
   onPostClick(commentInput: HTMLTextAreaElement) {
     let comment = commentInput.value;
-    if(comment.length <=0) return;
-    if(this.selectedImageFile){
+    if (comment.length <= 0) return;
+    if (this.selectedImageFile) {
       this.uploadImagePost(comment);
-    }else {
+    } else {
       this.uploadPost(comment);
     }
 
   }
 
-
   uploadImagePost(comment: string) {
     let postId = this.firestore.genDocId();
     this.storage.upload({
-      uploadName: 'upload Image Post',
+      uploadName: 'Upload Image Post and Text',
       path: ['Posts', postId, 'image'],
       data: {
         data: this.selectedImageFile,
@@ -50,13 +49,14 @@ export class CreatePostComponent implements OnInit {
           },
           onComplete: (docId) => {
             this.dialog.close();
+            window.location.reload()
           },
         });
       },
     });
   }
 
-  uploadPost(comment:string){
+  uploadPost(comment: string) {
     this.firestore.create({
       path: ['Posts'],
       data: {
@@ -66,6 +66,7 @@ export class CreatePostComponent implements OnInit {
       },
       onComplete: (docId) => {
         this.dialog.close();
+        window.location.reload()
       },
     });
   }
@@ -73,6 +74,7 @@ export class CreatePostComponent implements OnInit {
   onPhotoSelected(photoSelector: HTMLInputElement) {
     if (photoSelector.files != null) {
       this.selectedImageFile = photoSelector.files[0];
+      if(!this.selectedImageFile) {return;}
       let fileReader = new FileReader();
       fileReader.readAsDataURL(this.selectedImageFile);
       fileReader.addEventListener('loadend', (ev) => {
