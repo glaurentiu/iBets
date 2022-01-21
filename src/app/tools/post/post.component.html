@@ -2,9 +2,9 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title class="avatar-name"><img class="avatar" src="{{creatorAvatar}}"> {{creatorName}}</mat-card-title>
-      <mat-card-subtitle>{{creatorDescription}}</mat-card-subtitle>
+     
     </mat-card-header>
-    <img mat-card-image src="{{postData?.imageUrl}}">
+    <img class="post-image" mat-card-image src="{{postData?.imageUrl}}">
     <mat-card-content>
       {{postData?.comment}}
     </mat-card-content>
